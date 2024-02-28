@@ -38,7 +38,7 @@ public final class Constants {
     public static final int kLauncherMotorLeftDownCanID = 1;   // REV SparkMax
     public static final int kLauncherMotorRightDownCanID = 2;  // REV SparkMax
 
-    public static final int kWaitTime = 2;
+    public static final double kWaitTimeSeconds = 2; // The time to wait for the launcher to spin up
   }
 
   public static class AutoConstants {

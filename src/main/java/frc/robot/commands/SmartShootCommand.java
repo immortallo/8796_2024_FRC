@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants.LauncherConstants;
 import frc.robot.subsystems.LauncherSubsystem;
 
 public class SmartShootCommand extends SequentialCommandGroup {
@@ -13,7 +14,7 @@ public class SmartShootCommand extends SequentialCommandGroup {
    */
   public SmartShootCommand(LauncherSubsystem launcherSubsystem, double shootSpeed) {
     super(
-        new RunCommand(() -> launcherSubsystem.setDownSpeed(-shootSpeed)).withTimeout(2),
+        new RunCommand(() -> launcherSubsystem.setDownSpeed(-shootSpeed)).withTimeout(LauncherConstants.kWaitTimeSeconds),
         new RunCommand(() -> launcherSubsystem.setBothSpeed(-shootSpeed)));
   }
 }
