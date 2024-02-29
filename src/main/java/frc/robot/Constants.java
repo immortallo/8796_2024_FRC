@@ -33,10 +33,10 @@ public final class Constants {
   }
 
   public static class LauncherConstants {
-    public static final int kLauncherMotorLeftUpCanID = 5;     // CTRE VictorSPX
-    public static final int kLauncherMotorRightUpCanID = 6;    // CTRE VictorSPX
-    public static final int kLauncherMotorLeftDownCanID = 1;   // REV SparkMax
-    public static final int kLauncherMotorRightDownCanID = 2;  // REV SparkMax
+    public static final int kLauncherMotorLeftUpPWM = 1;     // CTRE VictorSPX
+    public static final int kLauncherMotorRightUpPWM = 0;    // CTRE VictorSPX
+    public static final int kLauncherMotorLeftDownPWM = 2;   // REV SparkMax
+    public static final int kLauncherMotorRightDownPWM = 3;  // REV SparkMax
 
     public static final double kWaitTimeSeconds = 2; // The time to wait for the launcher to spin up
   }
