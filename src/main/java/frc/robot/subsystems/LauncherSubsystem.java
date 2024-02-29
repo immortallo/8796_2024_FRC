@@ -5,27 +5,32 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.motorcontrol.PWMVictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.LauncherConstants;
 
 public class LauncherSubsystem extends SubsystemBase {
-  private final WPI_VictorSPX launcherMotorUp;
-  private final CANSparkMax launcherMotorDown;
+  private final PWMVictorSPX launcherMotorUp;
+  private final PWMVictorSPX launcherMotorDown;
 
-  private final VictorSPX launcherMotorUpFollower;
-  private final CANSparkMax launcherMotorDownFollower;
+  private final PWMVictorSPX launcherMotorUpFollower;
+  private final PWMVictorSPX launcherMotorDownFollower;
 
   public LauncherSubsystem() {
     // Motors on the left side are leaders
-    launcherMotorUp = new WPI_VictorSPX(LauncherConstants.kLauncherMotorLeftUpCanID);
-    launcherMotorDown = new CANSparkMax(LauncherConstants.kLauncherMotorLeftDownCanID, MotorType.kBrushed);
+    launcherMotorUp = new PWMVictorSPX(LauncherConstants.kLauncherMotorLeftUpPWM);
+    launcherMotorDown = new PWMVictorSPX(LauncherConstants.kLauncherMotorLeftDownPWM);
 
     // Motors on the right side are followers
-    launcherMotorUpFollower = new VictorSPX(LauncherConstants.kLauncherMotorRightUpCanID);
-    launcherMotorDownFollower = new CANSparkMax(LauncherConstants.kLauncherMotorRightDownCanID, MotorType.kBrushed);
+    launcherMotorUpFollower = new PWMVictorSPX(LauncherConstants.kLauncherMotorRightUpPWM);
+    launcherMotorDownFollower = new PWMVictorSPX(LauncherConstants.kLauncherMotorRightDownPWM);
 
-    launcherMotorUpFollower.follow(launcherMotorUp);
-    launcherMotorDownFollower.follow(launcherMotorDown);
+    // Invert the followers, because they are on the right side
+    launcherMotorUpFollower.setInverted(true);
+    launcherMotorDownFollower.setInverted(true);
+
+    launcherMotorDown.addFollower(launcherMotorDownFollower);
+    launcherMotorUp.addFollower(launcherMotorUpFollower);
   }
 
   public void setBothSpeed(double speed) {
