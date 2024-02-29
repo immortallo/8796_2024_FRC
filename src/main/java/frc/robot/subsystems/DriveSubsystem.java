@@ -4,8 +4,8 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -13,18 +13,18 @@ import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  private final WPI_VictorSPX leftMotor;
-  private final VictorSPX leftMotorFollower;
-  private final WPI_VictorSPX rightMotor;
-  private final VictorSPX rightMotorFollower;
+  private final CANSparkMax leftMotor;
+  private final CANSparkMax leftMotorFollower;
+  private final CANSparkMax rightMotor;
+  private final CANSparkMax rightMotorFollower;
 
   private final DifferentialDrive differentialDrive;
 
   public DriveSubsystem() {
-    leftMotor = new WPI_VictorSPX(DriveConstants.kLeftMotorPort);
-    leftMotorFollower = new VictorSPX(DriveConstants.kLeftMotorFollowerPort);
-    rightMotor = new WPI_VictorSPX(DriveConstants.kRightMotorPort);
-    rightMotorFollower = new VictorSPX(DriveConstants.kRightMotorFollowerPort);
+    leftMotor = new CANSparkMax(DriveConstants.kLeftMotorPort, MotorType.kBrushed);
+    leftMotorFollower = new CANSparkMax(DriveConstants.kLeftMotorFollowerPort, MotorType.kBrushed);
+    rightMotor = new CANSparkMax(DriveConstants.kRightMotorPort, MotorType.kBrushed);
+    rightMotorFollower = new CANSparkMax(DriveConstants.kRightMotorFollowerPort, MotorType.kBrushed);
 
     // Right motor should go forward when given a positive value.
     // so we set it to be inverted.
